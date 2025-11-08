@@ -1,12 +1,18 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Award, GraduationCap } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Award, GraduationCap, User, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 const TeamPage = () => {
+  const [selectedMember, setSelectedMember] = useState<number | null>(null);
+
   const team = [
     {
       name: "Tatenda Chitanda",
       role: "Founder & CEO",
+      tagline: "Results-driven professional transitioning into technology with expertise in Cybersecurity, Data Science, and Cloud Computing",
       bio: "Tatenda Chitanda is a results-driven professional with a strong background in Agro Business and HSSE (Health, Safety, Security, and Environment), now strategically transitioning into the technology sector. With a passion for Cybersecurity, Data Science, and Cloud Computing, Tatenda brings a unique blend of industry knowledge, safety management expertise, and advanced technical skills to every project.",
       certifications: [
         "Google Cybersecurity Certificate",
@@ -26,6 +32,7 @@ const TeamPage = () => {
     {
       name: "Cuthbert Mutaurwa",
       role: "Senior Systems Developer",
+      tagline: "Versatile Software Developer and IT Specialist with extensive experience in Python, Data Science, and Cybersecurity",
       bio: "Cuthbert Mutaurwa is a versatile Software Developer and IT Specialist with extensive experience in Python development, Data Science, Cybersecurity, and IT Infrastructure. He combines technical proficiency with practical problem-solving skills, enabling organizations to build scalable, secure, and innovative solutions.",
       certifications: [
         "Python 3 Programming Specialization – University of Michigan",
@@ -57,6 +64,7 @@ const TeamPage = () => {
     {
       name: "Munyaradzi L Kavhai",
       role: "Marketing & Administration Director",
+      tagline: "Digital Marketing & IT Specialist | Web Development Enthusiast | Cybersecurity & Cloud Advocate",
       bio: "Munyaradzi L Kavhai is a passionate and results-driven digital marketer and IT specialist with a unique blend of technical and creative expertise. He combines a strong foundation in computer science with hands-on experience in digital marketing, WordPress development, cloud solutions, and IT management, delivering impactful online experiences and measurable results. Having developed user-friendly, high-conversion websites through WordPress and web development, and as an Associate Google Cloud Engineer, he leverages cloud-based solutions to improve efficiency, scalability, and business performance.",
       certifications: [
         "Introduction to Cybersecurity Essentials – IBM (2025)",
@@ -101,62 +109,111 @@ const TeamPage = () => {
         </div>
       </section>
 
-      {/* Team Members */}
+      {/* Team Grid */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto space-y-16">
-            {team.map((member, index) => (
-              <Card 
-                key={index} 
-                className="p-10 border-2 shadow-elegant hover:shadow-hover transition-all animate-fade-in"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <div className="space-y-6">
-                  {/* Header */}
-                  <div className="space-y-2">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-                      {member.name}
-                    </h2>
-                    <p className="text-xl text-primary font-semibold">
-                      {member.role}
-                    </p>
-                  </div>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {team.map((member, index) => (
+                <Dialog key={index}>
+                  <DialogTrigger asChild>
+                    <Card 
+                      className="group cursor-pointer border-2 overflow-hidden hover:shadow-hover hover:scale-105 transition-all duration-300 animate-fade-in"
+                      style={{ animationDelay: `${index * 150}ms` }}
+                    >
+                      {/* Avatar Section */}
+                      <div className="relative bg-gradient-primary p-12 flex items-center justify-center">
+                        <div className="w-32 h-32 rounded-full bg-background/20 backdrop-blur-sm border-4 border-background/40 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <User className="w-16 h-16 text-primary-foreground" />
+                        </div>
+                      </div>
 
-                  {/* Bio */}
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    {member.bio}
-                  </p>
+                      {/* Content Section */}
+                      <div className="p-6 space-y-4">
+                        <div className="space-y-2">
+                          <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm font-semibold text-primary uppercase tracking-wide">
+                            {member.role}
+                          </p>
+                        </div>
 
-                  {/* Education */}
-                  <div className="bg-muted/50 rounded-lg p-6 space-y-3">
-                    <div className="flex items-center gap-2 text-foreground font-semibold">
-                      <GraduationCap className="w-5 h-5 text-primary" />
-                      <span>Education</span>
-                    </div>
-                    <p className="text-muted-foreground pl-7">{member.education}</p>
-                  </div>
+                        <p className="text-sm text-muted-foreground line-clamp-3">
+                          {member.tagline}
+                        </p>
 
-                  {/* Certifications */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-foreground font-semibold">
-                      <Award className="w-5 h-5 text-primary" />
-                      <span>Certifications & Training</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2 pl-7">
-                      {member.certifications.map((cert, idx) => (
-                        <Badge 
-                          key={idx} 
-                          variant="secondary" 
-                          className="text-sm py-2 px-3 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                        >
-                          {cert}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
+                        {/* View Details Button */}
+                        <div className="flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all">
+                          <span>View Full Profile</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </div>
+                      </div>
+                    </Card>
+                  </DialogTrigger>
+
+                  {/* Modal Content */}
+                  <DialogContent className="max-w-4xl max-h-[90vh] p-0">
+                    <ScrollArea className="max-h-[90vh]">
+                      <div className="p-8 space-y-8">
+                        {/* Modal Header */}
+                        <DialogHeader>
+                          <div className="flex items-start gap-6">
+                            <div className="w-24 h-24 rounded-full bg-gradient-primary flex items-center justify-center flex-shrink-0">
+                              <User className="w-12 h-12 text-primary-foreground" />
+                            </div>
+                            <div className="space-y-2 flex-1">
+                              <DialogTitle className="text-3xl font-bold text-foreground">
+                                {member.name}
+                              </DialogTitle>
+                              <p className="text-lg font-semibold text-primary">
+                                {member.role}
+                              </p>
+                            </div>
+                          </div>
+                        </DialogHeader>
+
+                        {/* Bio */}
+                        <div className="space-y-3">
+                          <h4 className="text-xl font-semibold text-foreground">About</h4>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {member.bio}
+                          </p>
+                        </div>
+
+                        {/* Education */}
+                        <div className="bg-muted/50 rounded-lg p-6 space-y-3">
+                          <div className="flex items-center gap-2 text-foreground font-semibold">
+                            <GraduationCap className="w-5 h-5 text-primary" />
+                            <span className="text-lg">Education</span>
+                          </div>
+                          <p className="text-muted-foreground">{member.education}</p>
+                        </div>
+
+                        {/* Certifications */}
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-2 text-foreground font-semibold">
+                            <Award className="w-5 h-5 text-primary" />
+                            <span className="text-lg">Certifications & Training</span>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {member.certifications.map((cert, idx) => (
+                              <Badge 
+                                key={idx} 
+                                variant="secondary" 
+                                className="text-sm py-2 px-3 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                              >
+                                {cert}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </ScrollArea>
+                  </DialogContent>
+                </Dialog>
+              ))}
+            </div>
           </div>
         </div>
       </section>

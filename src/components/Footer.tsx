@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Facebook, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -50,6 +50,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold text-foreground mb-4">Contact</h4>
             <div className="space-y-3">
+              <div className="flex items-start gap-2 text-muted-foreground">
+                <MapPin className="w-4 h-4 mt-0.5" />
+                <span>Bluffton, South Carolina, USA</span>
+              </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="w-4 h-4" />
                 <a href="tel:+18542577769" className="hover:text-primary transition-colors">
@@ -57,15 +61,27 @@ const Footer = () => {
                 </a>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
-                <Globe className="w-4 h-4" />
-                <a href="https://www.sentracore.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  www.sentracore.com
+                <Mail className="w-4 h-4" />
+                <a href="mailto:info@sentracorellc.com" className="hover:text-primary transition-colors">
+                  info@sentracorellc.com
                 </a>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
-                <Mail className="w-4 h-4" />
-                <a href="https://twitter.com/sentracorellc" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  @sentracorellc
+                <Globe className="w-4 h-4" />
+                <a href="https://www.sentracorell.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  www.sentracorell.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Facebook className="w-4 h-4" />
+                <a href="https://www.facebook.com/sentracorellc" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  Facebook
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Linkedin className="w-4 h-4" />
+                <a href="https://www.linkedin.com/company/sentracorellc" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  LinkedIn
                 </a>
               </div>
             </div>

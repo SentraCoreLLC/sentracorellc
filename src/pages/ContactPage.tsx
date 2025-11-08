@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, Globe } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, Facebook, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const ContactPage = () => {
@@ -80,6 +80,20 @@ const ContactPage = () => {
                   <Card className="p-6 border-2 hover:border-primary/50 transition-all">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-6 h-6 text-primary-foreground" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-foreground mb-1">Location</div>
+                        <p className="text-muted-foreground text-lg">
+                          Bluffton, South Carolina, USA
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+
+                  <Card className="p-6 border-2 hover:border-primary/50 transition-all">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
                         <Phone className="w-6 h-6 text-primary-foreground" />
                       </div>
                       <div>
@@ -94,12 +108,12 @@ const ContactPage = () => {
                   <Card className="p-6 border-2 hover:border-primary/50 transition-all">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Globe className="w-6 h-6 text-primary-foreground" />
+                        <Mail className="w-6 h-6 text-primary-foreground" />
                       </div>
                       <div>
-                        <div className="font-semibold text-foreground mb-1">Website</div>
-                        <a href="https://www.sentracore.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-lg">
-                          www.sentracore.com
+                        <div className="font-semibold text-foreground mb-1">Email</div>
+                        <a href="mailto:info@sentracorellc.com" className="text-muted-foreground hover:text-primary transition-colors text-lg">
+                          info@sentracorellc.com
                         </a>
                       </div>
                     </div>
@@ -108,13 +122,35 @@ const ContactPage = () => {
                   <Card className="p-6 border-2 hover:border-primary/50 transition-all">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-6 h-6 text-primary-foreground" />
+                        <Globe className="w-6 h-6 text-primary-foreground" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-foreground mb-1">Website</div>
+                        <a href="https://www.sentracorell.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-lg">
+                          www.sentracorell.com
+                        </a>
+                      </div>
+                    </div>
+                  </Card>
+
+                  <Card className="p-6 border-2 hover:border-primary/50 transition-all">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                        <div className="flex gap-2">
+                          <Facebook className="w-6 h-6 text-primary-foreground" />
+                          <Linkedin className="w-6 h-6 text-primary-foreground" />
+                        </div>
                       </div>
                       <div>
                         <div className="font-semibold text-foreground mb-1">Social Media</div>
-                        <a href="https://twitter.com/sentracorellc" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-lg">
-                          @sentracorellc
-                        </a>
+                        <div className="flex flex-col gap-1">
+                          <a href="https://www.facebook.com/sentracorellc" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                            Facebook: SentraCore LLC
+                          </a>
+                          <a href="https://www.linkedin.com/company/sentracorellc" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                            LinkedIn: SentraCore LLC
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </Card>

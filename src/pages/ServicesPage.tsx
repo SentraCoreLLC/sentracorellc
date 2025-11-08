@@ -2,16 +2,18 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Shield, FileCheck, Lock, Brain, Users, ArrowRight, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import aiService from "@/assets/ai-service.jpg";
-import complianceService from "@/assets/compliance-service.jpg";
-import trainingService from "@/assets/training-service.jpg";
+import cyberRiskService from "@/assets/cyber-risk-service.jpg";
+import complianceAuditService from "@/assets/compliance-audit-service.jpg";
+import secureLoginService from "@/assets/secure-login-service.jpg";
+import aiLiteracyService from "@/assets/ai-literacy-service.jpg";
+import humanFirewallService from "@/assets/human-firewall-service.jpg";
 
 const ServicesPage = () => {
   const services = [
     {
       icon: Shield,
       title: "Cyber Risk Assessments",
-      description: "We help businesses uncover hidden vulnerabilities before attackers do. Our comprehensive assessments analyze your digital infrastructure, identify potential threat vectors, and evaluate overall exposure. Beyond detection, we provide clear, actionable strategies to strengthen defences and reduce risks; ensuring your organization is resilient against both current and emerging cyber threats.",
+      description: "We help businesses uncover hidden vulnerabilities before attackers do. Our comprehensive assessments analyze your digital infrastructure, identify potential threat vectors, and evaluate overall exposure.",
       features: [
         "Digital infrastructure analysis",
         "Threat vector identification",
@@ -19,12 +21,12 @@ const ServicesPage = () => {
         "Actionable defense strategies",
         "Ongoing threat monitoring"
       ],
-      image: complianceService
+      image: cyberRiskService
     },
     {
       icon: FileCheck,
       title: "Compliance Audits",
-      description: "Staying compliant with industry regulations isn't just a legal requirement—it's essential for building trust with clients and partners. Our compliance audits align your processes with global standards such as HIPAA, GDPR, and NIST, ensuring your business meets and maintains critical regulatory requirements. We simplify the complexity of compliance so you can focus on growth while maintaining a secure and credible operation.",
+      description: "Staying compliant with industry regulations isn't just a legal requirement—it's essential for building trust with clients and partners. Our compliance audits align your processes with global standards such as HIPAA, GDPR, and NIST.",
       features: [
         "HIPAA, GDPR, NIST compliance",
         "Process alignment",
@@ -32,12 +34,12 @@ const ServicesPage = () => {
         "Documentation support",
         "Ongoing compliance monitoring"
       ],
-      image: complianceService
+      image: complianceAuditService
     },
     {
       icon: Lock,
       title: "Secure Login Practices",
-      description: "Your login system is the first line of defence against unauthorized access. We design and implement robust authentication workflows, enforce strong password hygiene, and set up role-based access controls tailored to your business. By combining convenience with cutting-edge security measures, we help protect sensitive data while keeping user experiences seamless.",
+      description: "Your login system is the first line of defence against unauthorized access. We design and implement robust authentication workflows, enforce strong password hygiene, and set up role-based access controls tailored to your business.",
       features: [
         "Robust authentication workflows",
         "Strong password policies",
@@ -45,12 +47,12 @@ const ServicesPage = () => {
         "Multi-factor authentication",
         "Session management"
       ],
-      image: complianceService
+      image: secureLoginService
     },
     {
       icon: Brain,
       title: "AI Literacy Workshops",
-      description: "Artificial Intelligence is reshaping industries, but only businesses that understand its responsible use will thrive. Our workshops demystify AI, providing your teams with a practical understanding of AI concepts, tools, and ethics. From recognizing AI opportunities to avoiding misuse, we empower your workforce to harness AI confidently and responsibly for innovation and growth.",
+      description: "Artificial Intelligence is reshaping industries, but only businesses that understand its responsible use will thrive. Our workshops demystify AI, providing your teams with a practical understanding of AI concepts, tools, and ethics.",
       features: [
         "AI fundamentals and concepts",
         "Practical tool training",
@@ -58,12 +60,12 @@ const ServicesPage = () => {
         "Opportunity identification",
         "Risk mitigation strategies"
       ],
-      image: aiService
+      image: aiLiteracyService
     },
     {
       icon: Users,
       title: "Human Firewall Academy",
-      description: "Technology alone can't stop cyberattacks; your people are the strongest defence. Our Human Firewall Academy equips employees with hands-on cybersecurity awareness training, teaching them how to detect phishing attempts, prevent breaches, and respond effectively to incidents. By transforming staff into vigilant defenders, we help reduce human error, which remains the number one cause of cyber incidents.",
+      description: "Technology alone can't stop cyberattacks; your people are the strongest defence. Our Human Firewall Academy equips employees with hands-on cybersecurity awareness training, teaching them how to detect phishing attempts, prevent breaches, and respond effectively to incidents.",
       features: [
         "Phishing & scam detection",
         "Social engineering defense",
@@ -72,7 +74,7 @@ const ServicesPage = () => {
         "Incident response basics",
         "AI & emerging threats module"
       ],
-      image: trainingService
+      image: humanFirewallService
     }
   ];
 
@@ -92,51 +94,62 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      {/* Services Detail */}
+      {/* Services Grid */}
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto space-y-24">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              const isEven = index % 2 === 0;
-              
-              return (
-                <div 
-                  key={index} 
-                  className={`grid lg:grid-cols-2 gap-12 items-center animate-fade-in ${!isEven ? 'lg:flex-row-reverse' : ''}`}
-                >
-                  <div className={`space-y-6 ${!isEven ? 'lg:order-2' : ''}`}>
-                    <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 bg-gradient-primary rounded-xl flex items-center justify-center">
-                        <Icon className="w-8 h-8 text-primary-foreground" />
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => {
+                const Icon = service.icon;
+                
+                return (
+                  <Card 
+                    key={index} 
+                    className="group overflow-hidden border-2 hover:border-primary/50 hover:shadow-hover transition-all duration-300 animate-fade-in"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    {/* Image */}
+                    <div className="relative h-48 overflow-hidden">
+                      <img 
+                        src={service.image} 
+                        alt={service.title} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
+                      <div className="absolute bottom-4 left-4 w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                        <Icon className="w-6 h-6 text-primary-foreground" />
                       </div>
-                      <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6 space-y-4">
+                      <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
                         {service.title}
-                      </h2>
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {service.description}
+                      </p>
+                      
+                      {/* Features List */}
+                      <div className="space-y-2 pt-2">
+                        {service.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                            <p className="text-sm text-muted-foreground">{feature}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Learn More Link */}
+                      <Link to="/contact" className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all pt-2">
+                        <span>Get Started</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
                     </div>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                      {service.description}
-                    </p>
-                    <div className="space-y-3 pt-4">
-                      <h3 className="font-semibold text-foreground text-lg">Key Features:</h3>
-                      {service.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <p className="text-muted-foreground">{feature}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className={`relative ${!isEven ? 'lg:order-1' : ''}`}>
-                    <img 
-                      src={service.image} 
-                      alt={service.title} 
-                      className="rounded-2xl shadow-elegant w-full"
-                    />
-                  </div>
-                </div>
-              );
-            })}
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>

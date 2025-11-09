@@ -8,6 +8,7 @@ import AboutPage from "./pages/AboutPage";
 import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
 import ContactPage from "./pages/ContactPage";
+import BlogPage from "./pages/BlogPage";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/team" element={<TeamPage />} />
+            <Route path="/blog" element={<BlogPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

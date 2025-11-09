@@ -56,26 +56,27 @@ const Home = () => {
             alt="Cybersecurity protection" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-secondary/80 to-accent/70" />
+          <div className="absolute inset-0 bg-gradient-hero opacity-90" />
+          <div className="absolute inset-0 bg-gradient-radial" />
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
+          <div className="max-w-5xl mx-auto text-center animate-fade-up">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display font-bold text-primary-foreground mb-6 leading-tight drop-shadow-lg">
               Secure | Comply | Thrive
             </h1>
-            <p className="text-xl sm:text-2xl text-primary-foreground/90 mb-8 leading-relaxed">
+            <p className="text-xl sm:text-2xl text-primary-foreground/95 mb-10 leading-relaxed max-w-3xl mx-auto drop-shadow-md">
               Empowering organizations to thrive securely in the digital age with tailored cybersecurity solutions and AI literacy programs
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-5 justify-center">
               <Link to="/contact">
-                <Button size="lg" className="text-lg px-8 py-6 bg-card text-foreground hover:bg-card/90 hover:scale-105 transition-transform shadow-elegant">
+                <Button variant="premium" size="lg" className="text-lg font-display">
                   Schedule Consultation
                   <ArrowRight className="ml-2" />
                 </Button>
               </Link>
               <Link to="/services">
-                <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all shadow-elegant">
+                <Button size="lg" variant="outline" className="text-lg border-2 border-primary-foreground bg-background/10 text-primary-foreground hover:bg-primary-foreground hover:text-primary backdrop-blur-sm font-display">
                   Explore Services
                 </Button>
               </Link>
@@ -85,41 +86,43 @@ const Home = () => {
       </section>
 
       {/* About Preview */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-gradient-subtle relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-radial opacity-30" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6 animate-fade-in">
-                <h2 className="text-4xl sm:text-5xl font-bold text-foreground">
+              <div className="space-y-6 animate-slide-in-left">
+                <h2 className="text-4xl sm:text-5xl font-display font-bold text-foreground">
                   Who We Are
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   SentraCore is a cybersecurity and AI literacy consultancy committed to helping businesses build resilience against digital threats. We specialize in proactive risk management, compliance assurance, and workforce empowerment through education.
                 </p>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {values.map((value, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                      <p className="text-foreground">{value}</p>
+                    <div key={index} className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                      <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
+                      <p className="text-foreground font-medium">{value}</p>
                     </div>
                   ))}
                 </div>
                 <Link to="/about">
-                  <Button size="lg" className="mt-4 hover:scale-105 transition-transform">
+                  <Button size="lg" variant="premium" className="mt-6 font-display">
                     Learn More About Us
                     <ArrowRight className="ml-2" />
                   </Button>
                 </Link>
               </div>
-              <div className="relative animate-scale-in">
+              <div className="relative animate-slide-in-right">
+                <div className="absolute -inset-4 bg-gradient-primary opacity-20 blur-3xl rounded-3xl" />
                 <img 
                   src={teamCollab} 
                   alt="Team collaboration" 
-                  className="rounded-2xl shadow-elegant w-full"
+                  className="rounded-2xl shadow-xl w-full relative z-10"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-gradient-primary text-primary-foreground p-8 rounded-xl shadow-hover max-w-xs">
-                  <p className="text-3xl font-bold">Est. 2025</p>
-                  <p className="text-sm opacity-90">Building Digital Resilience</p>
+                <div className="absolute -bottom-6 -right-6 bg-gradient-primary text-primary-foreground p-8 rounded-xl shadow-glow max-w-xs z-20 backdrop-blur-sm border border-primary-foreground/20">
+                  <p className="text-4xl font-display font-bold">Est. 2025</p>
+                  <p className="text-sm font-medium opacity-95">Building Digital Resilience</p>
                 </div>
               </div>
             </div>
@@ -128,10 +131,10 @@ const Home = () => {
       </section>
 
       {/* Services Preview */}
-      <section className="py-24 bg-muted/30">
+      <section className="py-24 bg-muted/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6">
+          <div className="text-center mb-16 animate-fade-up">
+            <h2 className="text-4xl sm:text-5xl font-display font-bold text-foreground mb-6">
               Our Services
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -145,16 +148,16 @@ const Home = () => {
               return (
                 <Card 
                   key={index} 
-                  className="p-8 hover:shadow-elegant transition-all duration-300 border-2 hover:border-primary/50 group hover:-translate-y-2 animate-fade-in"
+                  className="p-8 hover-lift border-2 hover:border-primary/30 group animate-fade-up bg-gradient-card"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="w-14 h-14 bg-gradient-primary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    <Icon className="w-7 h-7 text-primary-foreground" />
+                  <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
+                    <Icon className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-4">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{service.description}</p>
-                  <Link to={service.link} className="text-primary font-semibold inline-flex items-center hover:gap-2 transition-all">
-                    Learn More <ArrowRight className="ml-1 w-4 h-4" />
+                  <h3 className="text-xl font-display font-bold text-foreground mb-4">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">{service.description}</p>
+                  <Link to={service.link} className="text-primary font-semibold inline-flex items-center hover:gap-3 transition-all group-hover:text-accent">
+                    Learn More <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Card>
               );
@@ -163,7 +166,7 @@ const Home = () => {
 
           <div className="text-center">
             <Link to="/services">
-              <Button size="lg" className="hover:scale-105 transition-transform">
+              <Button size="lg" variant="premium" className="font-display">
                 View All Services
                 <ArrowRight className="ml-2" />
               </Button>
@@ -173,17 +176,18 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-primary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h2 className="text-4xl sm:text-5xl font-bold text-primary-foreground mb-6">
+      <section className="py-24 bg-gradient-hero relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-radial opacity-50" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center animate-scale-in">
+            <h2 className="text-4xl sm:text-5xl font-display font-bold text-primary-foreground mb-6 drop-shadow-lg">
               Ready to Secure Your Digital Future?
             </h2>
-            <p className="text-xl text-primary-foreground/90 mb-8 leading-relaxed">
+            <p className="text-xl text-primary-foreground/95 mb-10 leading-relaxed drop-shadow-md">
               Whether you need a comprehensive risk assessment, compliance audit, or want to empower your team with cybersecurity training, we're here to help.
             </p>
             <Link to="/contact">
-              <Button size="lg" className="bg-card text-foreground hover:bg-card/90 text-lg px-8 py-6 hover:scale-105 transition-transform shadow-elegant">
+              <Button size="lg" variant="premium" className="text-lg font-display bg-card text-foreground hover:bg-card/95">
                 Schedule a Consultation
                 <ArrowRight className="ml-2" />
               </Button>

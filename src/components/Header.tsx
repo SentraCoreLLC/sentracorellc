@@ -20,14 +20,14 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-sm shadow-md">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-card/90 backdrop-blur-md shadow-lg border-b border-border/50">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <img src={logo} alt="SentraCore" className="h-12 w-12" />
+          <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 hover:scale-105">
+            <img src={logo} alt="SentraCore" className="h-12 w-12 drop-shadow-md" />
             <div>
-              <h1 className="text-xl font-bold text-foreground">SentraCore</h1>
-              <p className="text-xs text-muted-foreground">Secure | Comply | Thrive</p>
+              <h1 className="text-xl font-display font-bold text-foreground">SentraCore</h1>
+              <p className="text-xs text-muted-foreground font-medium">Secure | Comply | Thrive</p>
             </div>
           </Link>
 
@@ -37,18 +37,18 @@ const Header = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-foreground hover:text-primary transition-colors font-medium relative ${
+                className={`text-foreground hover:text-primary transition-all duration-300 font-medium relative group ${
                   isActive(item.path) ? "text-primary" : ""
                 }`}
               >
                 {item.label}
-                {isActive(item.path) && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
-                )}
+                <span className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-primary rounded-full transition-transform duration-300 ${
+                  isActive(item.path) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                }`} />
               </Link>
             ))}
             <Link to="/contact">
-              <Button className="hover:scale-105 transition-transform">Get Started</Button>
+              <Button variant="premium" size="sm" className="font-display">Get Started</Button>
             </Link>
           </div>
 

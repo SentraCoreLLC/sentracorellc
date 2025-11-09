@@ -21,7 +21,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="min-h-screen font-['Inter',sans-serif]">
+        <div className="min-h-screen font-sans">
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />

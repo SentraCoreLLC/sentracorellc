@@ -133,7 +133,7 @@ const TeamPage = () => {
                     >
                       {/* Avatar Section */}
                       <div className="relative bg-gradient-primary p-12 flex items-center justify-center overflow-hidden">
-                        <div className="w-32 h-32 rounded-xl overflow-hidden border-4 border-background/40 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-48 h-48 rounded-xl overflow-hidden border-4 border-background/40 group-hover:scale-110 transition-transform duration-300">
                           <img 
                             src={member.image} 
                             alt={member.name}

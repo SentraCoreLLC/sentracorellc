@@ -12,11 +12,11 @@ const TeamPage = () => {
     {
       name: "Tatenda Chitanda",
       role: "Founder & CEO",
-      tagline: "Results-driven professional transitioning into technology with expertise in Cybersecurity, Data Science, and Cloud Computing",
-      bio: "Tatenda Chitanda is a results-driven professional with a strong background in Agro Business and HSSE (Health, Safety, Security, and Environment), now strategically transitioning into the technology sector. With a passion for Cybersecurity, Data Science, and Cloud Computing, Tatenda brings a unique blend of industry knowledge, safety management expertise, and advanced technical skills to every project.",
+      tagline: "Visionary cybersecurity leader with 8+ years of HSSE experience, turning complex technical challenges into teachable moments",
+      bio: "Tatenda Chitanda is the visionary behind SentraCore, a cybersecurity and AI consulting firm built on the belief that digital resilience starts with empowered people. With over 8 years of experience in Health, Safety, Security, and Environment (HSSE) leadership in South Africa, Tatenda brings a unique systems-thinking approach to cybersecurity, one that blends human behaviour, technical precision, and strategic foresight. After relocating to the U.S., Tatenda pivoted into cybersecurity and artificial intelligence, earning credentials including the Google Cybersecurity Certificate, AWS Certified Cloud Practitioner, and advanced training in Cyber Law, AI for Cybersecurity, and Leadership in Cybersecurity Management. His hands-on expertise spans risk assessment, compliance audits, incident response, and employee education, especially in phishing, social engineering, and digital hygiene. Tatenda is known for turning complex technical challenges into teachable moments. Whether he's troubleshooting a privilege escalation lab or crafting a witty analogy for a workshop, he thrives on making cybersecurity accessible, engaging, and unforgettable. His mission is to help organizations build not just secure systems, but security-aware cultures. When he's not leading client engagements or facilitating workshops, Tatenda documents technical wins, mentors newcomers, and shares insights that empower others—especially fellow immigrants navigating new frontiers in tech.",
       certifications: [
         "Google Cybersecurity Certificate",
-        "Network Defense Essentials (EC-Council)",
+        "Network Defence Essentials (EC-Council)",
         "Ethical Hacking Essentials (EC-Council)",
         "Digital Forensics Essentials: Hands-On Edition (EC-Council)",
         "Cybersecurity Management & Leadership (Macquarie University)",
@@ -24,7 +24,7 @@ const TeamPage = () => {
         "Google AI Essentials Certificate",
         "AI for Cybersecurity (Macquarie University)",
         "AWS Certified Cloud Practitioner",
-        "SAMTRAC – Safety Management Training Course",
+        "SAMTRAC – Safety Management Training Course, South Africa",
         "Engineering Studies N4–N6, South Africa"
       ],
       education: "MSc Cyber Security with Artificial Intelligence - Robert Kennedy Switzerland (ongoing)"

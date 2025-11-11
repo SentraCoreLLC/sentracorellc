@@ -36,12 +36,12 @@ const TeamPage = () => {
       education: "MSc Cyber Security with Artificial Intelligence - Robert Kennedy Switzerland (ongoing)"
     },
     {
-      name: "Cuthbert Mutaurwa",
+      name: "Cathbert Mutaurwa",
       role: "Senior Systems Developer",
       image: cathbertImg,
-      linkedin: "",
+      linkedin: "https://www.linkedin.com/in/cathbert-mutaurwa-55760399/",
       tagline: "Versatile Software Developer and IT Specialist with extensive experience in Python, Data Science, and Cybersecurity",
-      bio: "Cuthbert Mutaurwa is a versatile Software Developer and IT Specialist with extensive experience in Python development, Data Science, Cybersecurity, and IT Infrastructure. He combines technical proficiency with practical problem-solving skills, enabling organizations to build scalable, secure, and innovative solutions.",
+      bio: "Cathbert Mutaurwa is a versatile Software Developer and IT Specialist with extensive experience in Python development, Data Science, Cybersecurity, and IT Infrastructure. He combines technical proficiency with practical problem-solving skills, enabling organizations to build scalable, secure, and innovative solutions.",
       certifications: [
         "Python 3 Programming Specialization – University of Michigan",
         "Programming for Everybody (Getting Started with Python) – Coursera",
@@ -133,7 +133,7 @@ const TeamPage = () => {
                     >
                       {/* Avatar Section */}
                       <div className="relative bg-gradient-primary p-12 flex items-center justify-center overflow-hidden">
-                        <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-background/40 group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-32 h-32 rounded-xl overflow-hidden border-4 border-background/40 group-hover:scale-110 transition-transform duration-300">
                           <img 
                             src={member.image} 
                             alt={member.name}
@@ -189,7 +189,7 @@ const TeamPage = () => {
                         {/* Modal Header */}
                         <DialogHeader>
                           <div className="flex items-start gap-6">
-                            <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 flex-shrink-0">
+                            <div className="w-24 h-24 rounded-xl overflow-hidden border-4 border-primary/20 flex-shrink-0">
                               <img 
                                 src={member.image} 
                                 alt={member.name}

@@ -2,8 +2,12 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Award, GraduationCap, User, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Award, GraduationCap, ArrowRight, Linkedin } from "lucide-react";
 import { useState } from "react";
+import tatendaImg from "@/assets/tatenda.jpg";
+import cathbertImg from "@/assets/cathbert.jpg";
+import munyaradziImg from "@/assets/munyaradzi.jpg";
 
 const TeamPage = () => {
   const [selectedMember, setSelectedMember] = useState<number | null>(null);
@@ -12,6 +16,8 @@ const TeamPage = () => {
     {
       name: "Tatenda Chitanda",
       role: "Founder & CEO",
+      image: tatendaImg,
+      linkedin: "https://www.linkedin.com/in/tatenda-chitanda-540536192/",
       tagline: "Visionary cybersecurity leader with 8+ years of HSSE experience, turning complex technical challenges into teachable moments",
       bio: "Tatenda Chitanda is the visionary behind SentraCore, a cybersecurity and AI consulting firm built on the belief that digital resilience starts with empowered people. With over 8 years of experience in Health, Safety, Security, and Environment (HSSE) leadership in South Africa, Tatenda brings a unique systems-thinking approach to cybersecurity, one that blends human behaviour, technical precision, and strategic foresight. After relocating to the U.S., Tatenda pivoted into cybersecurity and artificial intelligence, earning credentials including the Google Cybersecurity Certificate, AWS Certified Cloud Practitioner, and advanced training in Cyber Law, AI for Cybersecurity, and Leadership in Cybersecurity Management. His hands-on expertise spans risk assessment, compliance audits, incident response, and employee education, especially in phishing, social engineering, and digital hygiene. Tatenda is known for turning complex technical challenges into teachable moments. Whether he's troubleshooting a privilege escalation lab or crafting a witty analogy for a workshop, he thrives on making cybersecurity accessible, engaging, and unforgettable. His mission is to help organizations build not just secure systems, but security-aware cultures. When he's not leading client engagements or facilitating workshops, Tatenda documents technical wins, mentors newcomers, and shares insights that empower others—especially fellow immigrants navigating new frontiers in tech.",
       certifications: [
@@ -32,6 +38,8 @@ const TeamPage = () => {
     {
       name: "Cuthbert Mutaurwa",
       role: "Senior Systems Developer",
+      image: cathbertImg,
+      linkedin: "",
       tagline: "Versatile Software Developer and IT Specialist with extensive experience in Python, Data Science, and Cybersecurity",
       bio: "Cuthbert Mutaurwa is a versatile Software Developer and IT Specialist with extensive experience in Python development, Data Science, Cybersecurity, and IT Infrastructure. He combines technical proficiency with practical problem-solving skills, enabling organizations to build scalable, secure, and innovative solutions.",
       certifications: [
@@ -64,6 +72,8 @@ const TeamPage = () => {
     {
       name: "Munyaradzi L Kavhai",
       role: "Marketing & Administration Director",
+      image: munyaradziImg,
+      linkedin: "https://www.linkedin.com/in/munyah-l-kavhai",
       tagline: "Digital Marketing & IT Specialist | Web Development Enthusiast | Cybersecurity & Cloud Advocate",
       bio: "Munyaradzi L Kavhai is a passionate and results-driven digital marketer and IT specialist with a unique blend of technical and creative expertise. He combines a strong foundation in computer science with hands-on experience in digital marketing, WordPress development, cloud solutions, and IT management, delivering impactful online experiences and measurable results. Having developed user-friendly, high-conversion websites through WordPress and web development, and as an Associate Google Cloud Engineer, he leverages cloud-based solutions to improve efficiency, scalability, and business performance.",
       certifications: [
@@ -122,9 +132,13 @@ const TeamPage = () => {
                       style={{ animationDelay: `${index * 150}ms` }}
                     >
                       {/* Avatar Section */}
-                      <div className="relative bg-gradient-primary p-12 flex items-center justify-center">
-                        <div className="w-32 h-32 rounded-full bg-background/20 backdrop-blur-sm border-4 border-background/40 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <User className="w-16 h-16 text-primary-foreground" />
+                      <div className="relative bg-gradient-primary p-12 flex items-center justify-center overflow-hidden">
+                        <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-background/40 group-hover:scale-110 transition-transform duration-300">
+                          <img 
+                            src={member.image} 
+                            alt={member.name}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
                       </div>
 
@@ -143,10 +157,26 @@ const TeamPage = () => {
                           {member.tagline}
                         </p>
 
-                        {/* View Details Button */}
-                        <div className="flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all">
-                          <span>View Full Profile</span>
-                          <ArrowRight className="w-4 h-4" />
+                        {/* Action Buttons */}
+                        <div className="flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all">
+                            <span>View Full Profile</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </div>
+                          
+                          {member.linkedin && (
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-primary hover:text-primary hover:bg-primary/10"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.open(member.linkedin, '_blank');
+                              }}
+                            >
+                              <Linkedin className="w-4 h-4" />
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </Card>
@@ -159,13 +189,29 @@ const TeamPage = () => {
                         {/* Modal Header */}
                         <DialogHeader>
                           <div className="flex items-start gap-6">
-                            <div className="w-24 h-24 rounded-full bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                              <User className="w-12 h-12 text-primary-foreground" />
+                            <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary/20 flex-shrink-0">
+                              <img 
+                                src={member.image} 
+                                alt={member.name}
+                                className="w-full h-full object-cover"
+                              />
                             </div>
                             <div className="space-y-2 flex-1">
-                              <DialogTitle className="text-3xl font-bold text-foreground">
-                                {member.name}
-                              </DialogTitle>
+                              <div className="flex items-center gap-3">
+                                <DialogTitle className="text-3xl font-bold text-foreground">
+                                  {member.name}
+                                </DialogTitle>
+                                {member.linkedin && (
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-9 w-9 text-primary hover:text-primary hover:bg-primary/10"
+                                    onClick={() => window.open(member.linkedin, '_blank')}
+                                  >
+                                    <Linkedin className="w-5 h-5" />
+                                  </Button>
+                                )}
+                              </div>
                               <p className="text-lg font-semibold text-primary">
                                 {member.role}
                               </p>

@@ -67,12 +67,6 @@ const Footer = () => {
                 </a>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
-                <Globe className="w-4 h-4" />
-                <a href="https://www.sentracorell.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                  www.sentracorell.com
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-muted-foreground">
                 <Facebook className="w-4 h-4" />
                 <a href="https://www.facebook.com/sentracorellc" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                   Facebook

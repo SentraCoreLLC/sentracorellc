@@ -137,20 +137,6 @@ const ContactPage = () => {
                   <Card className="p-6 border-2 hover:border-primary/50 transition-all">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Globe className="w-6 h-6 text-primary-foreground" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-foreground mb-1">Website</div>
-                        <a href="https://www.sentracorell.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-lg">
-                          www.sentracorell.com
-                        </a>
-                      </div>
-                    </div>
-                  </Card>
-
-                  <Card className="p-6 border-2 hover:border-primary/50 transition-all">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center flex-shrink-0">
                         <div className="flex gap-2">
                           <Facebook className="w-6 h-6 text-primary-foreground" />
                           <Linkedin className="w-6 h-6 text-primary-foreground" />

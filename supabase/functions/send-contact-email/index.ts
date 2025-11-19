@@ -11,9 +11,58 @@ const corsHeaders = {
 interface ContactEmailRequest {
   name: string;
   email: string;
-  company: string;
-  phone: string;
+  company?: string;
+  phone?: string;
   message: string;
+  honeypot?: string;
+}
+
+// HTML escape function to prevent XSS
+function escapeHtml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// Validation function
+function validateInput(data: ContactEmailRequest): { valid: boolean; error?: string } {
+  // Check honeypot field (should be empty)
+  if (data.honeypot && data.honeypot.length > 0) {
+    return { valid: false, error: "Invalid submission" };
+  }
+
+  // Validate required fields
+  if (!data.name || data.name.trim().length === 0 || data.name.length > 100) {
+    return { valid: false, error: "Invalid name" };
+  }
+
+  if (!data.email || data.email.trim().length === 0 || data.email.length > 255) {
+    return { valid: false, error: "Invalid email" };
+  }
+
+  // Email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(data.email)) {
+    return { valid: false, error: "Invalid email format" };
+  }
+
+  if (!data.message || data.message.trim().length === 0 || data.message.length > 2000) {
+    return { valid: false, error: "Invalid message" };
+  }
+
+  // Validate optional fields
+  if (data.company && data.company.length > 100) {
+    return { valid: false, error: "Invalid company name" };
+  }
+
+  if (data.phone && data.phone.length > 20) {
+    return { valid: false, error: "Invalid phone number" };
+  }
+
+  return { valid: true };
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -23,9 +72,31 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, company, phone, message }: ContactEmailRequest = await req.json();
+    const { name, email, company, phone, message, honeypot }: ContactEmailRequest = await req.json();
 
-    console.log("Sending contact email from:", name, email);
+    console.log("Received contact form submission from:", email);
+
+    // Validate input
+    const validation = validateInput({ name, email, company, phone, message, honeypot });
+    if (!validation.valid) {
+      console.error("Validation failed:", validation.error);
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    // Sanitize all inputs by escaping HTML
+    const safeName = escapeHtml(name.trim());
+    const safeEmail = escapeHtml(email.trim());
+    const safeCompany = company ? escapeHtml(company.trim()) : "N/A";
+    const safePhone = phone ? escapeHtml(phone.trim()) : "N/A";
+    const safeMessage = escapeHtml(message.trim()).replace(/\n/g, '<br>');
+
+    console.log("Sending contact email from:", safeName, safeEmail);
 
     // Send email to company
     const emailResponse = await resend.emails.send({
@@ -33,15 +104,15 @@ const handler = async (req: Request): Promise<Response> => {
       to: ["info@sentracorellc.com"],
       cc: ["tatendachitanda6@gmail.com"],
       reply_to: email,
-      subject: `New Contact Form Submission from ${name}`,
+      subject: `New Contact Form Submission from ${safeName}`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Company:</strong> ${company}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        <p><strong>Company:</strong> ${safeCompany}</p>
+        <p><strong>Phone:</strong> ${safePhone}</p>
         <h3>Message:</h3>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${safeMessage}</p>
       `,
     });
 

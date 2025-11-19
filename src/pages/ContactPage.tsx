@@ -7,6 +7,16 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Globe, Facebook, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+const contactFormSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
+  phone: z.string().trim().max(20, "Phone number must be less than 20 characters").optional(),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters"),
+  honeypot: z.string().max(0, "Invalid submission").optional(),
+});
 
 const ContactPage = () => {
   const { toast } = useToast();
@@ -15,9 +25,11 @@ const ContactPage = () => {
     email: "",
     company: "",
     phone: "",
-    message: ""
+    message: "",
+    honeypot: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -28,11 +40,15 @@ const ContactPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
     setIsSubmitting(true);
 
     try {
+      // Validate form data
+      const validatedData = contactFormSchema.parse(formData);
+
       const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
+        body: validatedData
       });
 
       if (error) throw error;
@@ -47,15 +63,31 @@ const ContactPage = () => {
         email: "",
         company: "",
         phone: "",
-        message: ""
+        message: "",
+        honeypot: ""
       });
     } catch (error) {
-      console.error("Error sending email:", error);
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again or email us directly.",
-        variant: "destructive",
-      });
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            fieldErrors[err.path[0].toString()] = err.message;
+          }
+        });
+        setErrors(fieldErrors);
+        toast({
+          title: "Validation Error",
+          description: "Please check the form fields and try again.",
+          variant: "destructive",
+        });
+      } else {
+        console.error("Error sending email:", error);
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again or email us directly.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -162,6 +194,18 @@ const ContactPage = () => {
               <Card className="p-8 border-2 shadow-elegant animate-fade-in" style={{ animationDelay: '200ms' }}>
                 <h3 className="text-2xl font-bold text-foreground mb-6">Send us a Message</h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot field for spam protection - hidden from users */}
+                  <input
+                    type="text"
+                    name="honeypot"
+                    value={formData.honeypot}
+                    onChange={handleChange}
+                    style={{ position: 'absolute', left: '-9999px' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+                  
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name *</Label>
                     <Input
@@ -171,8 +215,10 @@ const ContactPage = () => {
                       onChange={handleChange}
                       placeholder="John Doe"
                       required
+                      maxLength={100}
                       className="border-2"
                     />
+                    {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -185,8 +231,10 @@ const ContactPage = () => {
                       onChange={handleChange}
                       placeholder="john@company.com"
                       required
+                      maxLength={255}
                       className="border-2"
                     />
+                    {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -197,8 +245,10 @@ const ContactPage = () => {
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Your Company"
+                      maxLength={100}
                       className="border-2"
                     />
+                    {errors.company && <p className="text-sm text-destructive">{errors.company}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -210,8 +260,10 @@ const ContactPage = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="+1 234 567 8900"
+                      maxLength={20}
                       className="border-2"
                     />
+                    {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
                   </div>
 
                   <div className="space-y-2">
@@ -223,9 +275,11 @@ const ContactPage = () => {
                       onChange={handleChange}
                       placeholder="Tell us about your cybersecurity needs..."
                       required
+                      maxLength={2000}
                       rows={5}
                       className="border-2"
                     />
+                    {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
                   </div>
 
                   <Button 

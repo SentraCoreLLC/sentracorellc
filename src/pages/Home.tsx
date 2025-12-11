@@ -29,19 +29,22 @@ const Home = () => {
       icon: Brain,
       title: "AI Literacy Workshops",
       description: "Empower your teams with practical AI understanding, tools, and ethics.",
-      link: "/services"
+      link: "https://hfa.sentracorellc.com/ai",
+      external: true
     },
     {
       icon: Users,
       title: "Human Firewall Academy",
       description: "Transform employees into vigilant cyber defenders with hands-on training.",
-      link: "/services"
+      link: "https://hfa.sentracorellc.com",
+      external: true
     },
     {
       icon: Fingerprint,
       title: "SentraVerify™",
       description: "AI-powered credential and access hygiene to protect digital identities.",
-      link: "/services"
+      link: "https://vf.sentracorellc.com",
+      external: true
     }
   ];
 
@@ -151,6 +154,13 @@ const Home = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
             {services.map((service, index) => {
               const Icon = service.icon;
+              const LinkWrapper = service.external 
+                ? ({ children, className }: { children: React.ReactNode; className?: string }) => (
+                    <a href={service.link} target="_blank" rel="noopener noreferrer" className={className}>{children}</a>
+                  )
+                : ({ children, className }: { children: React.ReactNode; className?: string }) => (
+                    <Link to={service.link} className={className}>{children}</Link>
+                  );
               return (
                 <Card 
                   key={index} 
@@ -162,9 +172,9 @@ const Home = () => {
                   </div>
                   <h3 className="text-xl font-display font-bold text-foreground mb-4">{service.title}</h3>
                   <p className="text-muted-foreground leading-relaxed mb-6">{service.description}</p>
-                  <Link to={service.link} className="text-primary font-semibold inline-flex items-center hover:gap-3 transition-all group-hover:text-accent">
+                  <LinkWrapper className="text-primary font-semibold inline-flex items-center hover:gap-3 transition-all group-hover:text-accent">
                     Learn More <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  </LinkWrapper>
                 </Card>
               );
             })}

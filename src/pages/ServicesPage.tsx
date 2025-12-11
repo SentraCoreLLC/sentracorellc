@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, FileCheck, Lock, Brain, Users, ArrowRight, CheckCircle } from "lucide-react";
+import { Shield, FileCheck, Lock, Brain, Users, ArrowRight, CheckCircle, Fingerprint } from "lucide-react";
 import { Link } from "react-router-dom";
 import cyberRiskService from "@/assets/cyber-risk-service.jpg";
 import complianceAuditService from "@/assets/compliance-audit-service.jpg";
@@ -75,6 +75,20 @@ const ServicesPage = () => {
         "AI & emerging threats module"
       ],
       image: humanFirewallService
+    },
+    {
+      icon: Fingerprint,
+      title: "SentraVerify™",
+      description: "Protect Digital Identities. Reduce Risk. Act Proactively. Our AI-powered credential and access hygiene solution helps businesses assess credential strength, identify vulnerable accounts, and enforce least-privilege policies across your organization.",
+      features: [
+        "Password & access assessment",
+        "AI-driven risk scoring",
+        "MFA adoption monitoring",
+        "Role-based access insights",
+        "Interactive compliance dashboards",
+        "Continuous high-risk account monitoring"
+      ],
+      image: secureLoginService
     }
   ];
 

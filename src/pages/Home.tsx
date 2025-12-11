@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Shield, FileCheck, Lock, Brain, Users, ArrowRight, CheckCircle } from "lucide-react";
+import { Shield, FileCheck, Lock, Brain, Users, ArrowRight, CheckCircle, Fingerprint } from "lucide-react";
 import heroCyber from "@/assets/hero-cyber.jpg";
 import teamCollab from "@/assets/team-collab.jpg";
 
@@ -35,6 +35,12 @@ const Home = () => {
       icon: Users,
       title: "Human Firewall Academy",
       description: "Transform employees into vigilant cyber defenders with hands-on training.",
+      link: "/services"
+    },
+    {
+      icon: Fingerprint,
+      title: "SentraVerify™",
+      description: "AI-powered credential and access hygiene to protect digital identities.",
       link: "/services"
     }
   ];

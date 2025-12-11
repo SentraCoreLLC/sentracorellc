@@ -60,7 +60,8 @@ const ServicesPage = () => {
         "Opportunity identification",
         "Risk mitigation strategies"
       ],
-      image: aiLiteracyService
+      image: aiLiteracyService,
+      externalLink: "https://hfa.sentracorellc.com/ai"
     },
     {
       icon: Users,
@@ -74,7 +75,8 @@ const ServicesPage = () => {
         "Incident response basics",
         "AI & emerging threats module"
       ],
-      image: humanFirewallService
+      image: humanFirewallService,
+      externalLink: "https://hfa.sentracorellc.com"
     },
     {
       icon: Fingerprint,
@@ -88,7 +90,8 @@ const ServicesPage = () => {
         "Interactive compliance dashboards",
         "Continuous high-risk account monitoring"
       ],
-      image: secureLoginService
+      image: secureLoginService,
+      externalLink: "https://vf.sentracorellc.com"
     }
   ];
 
@@ -155,10 +158,22 @@ const ServicesPage = () => {
                       </div>
 
                       {/* Learn More Link */}
-                      <Link to="/contact" className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all pt-2">
-                        <span>Get Started</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
+                      {service.externalLink ? (
+                        <a 
+                          href={service.externalLink} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all pt-2"
+                        >
+                          <span>Get Started</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </a>
+                      ) : (
+                        <Link to="/contact" className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:gap-3 transition-all pt-2">
+                          <span>Get Started</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      )}
                     </div>
                   </Card>
                 );
@@ -210,12 +225,12 @@ const ServicesPage = () => {
                   <p className="text-primary-foreground font-semibold text-lg">
                     Includes a Free Cyber Hygiene Checklist with every booking
                   </p>
-                  <Link to="/contact">
+                  <a href="https://hfa.sentracorellc.com" target="_blank" rel="noopener noreferrer">
                     <Button size="lg" className="bg-card text-foreground hover:bg-card/90 text-lg px-8 py-6 hover:scale-105 transition-transform">
                       Book Training Now
                       <ArrowRight className="ml-2" />
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </Card>

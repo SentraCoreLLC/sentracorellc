@@ -12,6 +12,7 @@ import BlogPage from "./pages/BlogPage";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import TatehChatbot from "./components/TatehChatbot";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
+          <TatehChatbot />
         </div>
       </BrowserRouter>
     </TooltipProvider>
